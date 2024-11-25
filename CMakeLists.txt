@@ -10,6 +10,8 @@ find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 include_directories(include)
 
@@ -26,6 +28,12 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+# Install Python executables
+install(PROGRAMS
+  scripts/TransformWorld2Odom.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 # Install launch and config files.
 install(DIRECTORY
