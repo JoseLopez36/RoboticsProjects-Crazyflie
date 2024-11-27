@@ -25,9 +25,16 @@ Please follow the instructions given on the [CrazySim](https://github.com/gtfact
 The folder structure of this package is:
 1. maps - it contains .bmp and .yaml files that are used in map server.
 2. worlds -  here are located .sdf files and 3D models based on the 2D files in folder maps.
-3. launch -  it contains file to launch gazebo simulation with crazyflies (sitl_multiagent_text.sh) with the initial poses from file in folder drone spawn list, launch file to start map server(map_server_launch.py) and launch file which starts crazyflies server, rviz and nodes for publishing velocity to crazyflies.
-4. config - here is the configuration file for rviz and the main yaml file for crazyflies server
-5. startup - it contains the example of starting the simulation and ROS2 nodes.
+3. scripts - additional node for static transformation broadcaster from world to odom is there. 
+4. launch -  it contains file to launch gazebo simulation with crazyflies (sitl_multiagent_text.sh) with the initial poses from file in folder drone spawn list, launch file to start map server(map_server_launch.py) and launch file which starts crazyflies server, rviz and nodes for publishing velocity to crazyflies.
+5. config - here is the configuration file for rviz and the main yaml file for crazyflies server
+6. startup - it contains the example of starting the simulation and ROS2 nodes.
+
+## Topics and services
+
+Velocity commands are published on `/cf_x/cmd_vel`. Odometry can be obatined from the topic `/cf_x/odom` where x is the number of the crazyflie. Pose can also be obtained from the topic `/cf_x/pose` and velocity from `/cf_x/velocity`, just mind that for this topic message type is not Twist. 
+To take off/land you can call services  /cf_x/takeoff, /cf_x/land. Current vel_mux.py node does takeoff automatically, after the first cmd_vel command, but you can call it on your own. 
+
 
 ## Test the simulation
 > [!NOTE]
