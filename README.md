@@ -32,8 +32,8 @@ The folder structure of this package is:
 
 ## Topics and services
 
-Velocity commands are published on `/cf_x/cmd_vel`. Odometry can be obatined from the topic `/cf_x/odom` where x is the number of the crazyflie. Pose can also be obtained from the topic `/cf_x/pose` and velocity from `/cf_x/velocity`, just mind that for this topic message type is not Twist. 
-To take off/land you can call services  /cf_x/takeoff, /cf_x/land. Current vel_mux.py node does takeoff automatically, after the first cmd_vel command, but you can call it on your own. 
+Velocity commands are published on `/cf_x/cmd_vel` to crazyflie cf_x. Odometry can be obatined from the topic `/cf_x/odom` . Pose can also be obtained from the topic `/cf_x/pose` and velocity from `/cf_x/velocity`, just mind that for this topic message type is not Twist. 
+To take off/land you can call services  `/cf_x/takeoff`, `/cf_x/land`. Current vel_mux.py does takeoff automatically, after the first cmd_vel command, but you can call it on your own. 
 
 
 ## Test the simulation
