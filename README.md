@@ -31,7 +31,7 @@ The folder structure of this package is:
 
 ## Test the simulation
 > [!NOTE]
-> Within MRS docker, the `mrs_crazyflies` package is located in `/root/CrazySim/ros2_ws/src/`. All folders and files mentioned later in these instructions are located inside the package.
+> Within MRS docker, the `mrs_crazyflies` package is located in `/root/CrazySim/ros2_ws/src/`. All folders and files mentioned later in these instructions are located inside the package In docker has been added alias cd_mrs_crazyflies which changes the directory to this package.
 
 This example showcases how to run the simulation using sessions, tmuxinator and environment variables. You do not need to use this format if you do not find it useful.
 
@@ -72,7 +72,7 @@ The command is stored in history, so you need to move in that pane, press up arr
 ```
 history -s "ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/cf_1/cmd_vel"
 ```
-
+After killing the session using ctrl+b, k, there might be some ros2 nodes running in the background, please do the command: kill_ros2, which will kill all ros2 processes running, it is defined in .bash_aliases. Keep this in mind when starting next session. :)
 ## Working on your project
 
 For developing your solution, you can either create a new package, or you can continue to work in this package. You can write your code in Python or C++.
