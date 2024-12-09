@@ -11,7 +11,7 @@ Again, there are two ways you can set up your computer to run the simulation:
 
 ### 1) Docker installation (recommended!!!)
 
-Clone the [repository](https://github.com/larics/docker_files):
+Clone the [repository](https://github.com/larics/docker_files/tree/master/ros2/ros2-humble/crazyflies):
 ```
 git clone https://github.com/larics/docker_files.git
 ```
@@ -38,7 +38,7 @@ To take off/land you can call services  `/cf_x/takeoff`, `/cf_x/land`. Current v
 
 ## Test the simulation
 > [!NOTE]
-> Within MRS docker, the `mrs_crazyflies` package is located in `/root/CrazySim/ros2_ws/src/`. All folders and files mentioned later in these instructions are located inside the package In docker has been added alias cd_mrs_crazyflies which changes the directory to this package.
+> Within MRS docker, the `mrs_crazyflies` package is located in `/root/CrazySim/ros2_ws/src/`. All folders and files mentioned later in these instructions are located inside the package In docker, there is an alias `cd_mrs_crazyflies` which changes the directory to this package.
 
 This example showcases how to run the simulation using sessions, tmuxinator and environment variables. You do not need to use this format if you do not find it useful.
 
