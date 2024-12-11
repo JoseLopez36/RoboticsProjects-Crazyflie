@@ -15,7 +15,7 @@ Clone the [repository](https://github.com/larics/docker_files/tree/master/ros2/r
 ```
 git clone https://github.com/larics/docker_files.git
 ```
-And follow the setup instructions there. This docker automatically clones and builds ROS2 mrs_crazyflies package.
+And follow the setup instructions  on [this link](https://github.com/larics/docker_files/tree/master/ros2/ros2-humble/crazyflies). This docker automatically clones and builds ROS2 mrs_crazyflies package.
 
 ### 2) Manual installation (if you already have ROS2 installed)
 > We are assuming that you have ROS2 Humble installed.
@@ -32,7 +32,7 @@ The folder structure of this package is:
 
 ## Topics and services
 
-Velocity commands are published on `/cf_x/cmd_vel` to crazyflie cf_x. Odometry can be obatined from the topic `/cf_x/odom` . Pose can also be obtained from the topic `/cf_x/pose` and velocity from `/cf_x/velocity`, just mind that for this topic message type is not Twist. 
+Velocity commands are published on `/cf_x/cmd_vel` to crazyflie cf_x. Odometry can be obatined from the topic `/cf_x/odom` . Pose can also be obtained from the topic `/cf_x/pose` and velocity from `/cf_x/velocity`, just keep in mind that for this topic message type is not Twist. 
 To take off/land you can call services  `/cf_x/takeoff`, `/cf_x/land`. Current vel_mux.py does takeoff automatically, after the first cmd_vel command, but you can call it on your own. 
 
 
