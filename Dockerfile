@@ -173,11 +173,16 @@ RUN mkdir -p $HOME/ros2_ws/src \
   && git clone https://github.com/IMRCLab/crazyswarm2 --recursive \
   && git clone https://github.com/larics/mrs_crazyflies.git
 
+#replace crazyflie_server.py adapted for sitl 
+RUN rm $HOME/ros2_ws/src/crazyswarm2/crazyflie/scripts/crazyflie_server.py
+COPY to_copy/crazyflie_server.py $HOME/ros2_ws/src/crazyswarm2/crazyflie/scripts/
+RUN chmod +x $HOME/ros2_ws/src/crazyswarm2/crazyflie/scripts/crazyflie_server.py
 
 # Add alias for sourcing for ros2 and ros2 workspace
 RUN echo "alias ros2_ws='source $HOME/ros2_ws/install/setup.bash'" >> $HOME/.bashrc
 RUN echo "alias source_ros2='source /opt/ros/${ROS2_DISTRO}/setup.bash'" >> $HOME/.bashrc
 
+RUN echo "alias cd_mrs_crazyflies='cd /root/ros2_ws/src/mrs_crazyflies'" >> $HOME/.bashrc
 RUN echo "export PATH='$HOME/.local/bin:$PATH'" >> $HOME/.bashrc
 
 # setup ros2 environment variables
