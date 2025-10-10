@@ -178,11 +178,9 @@ robot_types:
       default_topics:
         pose:
           frequency: 10
-        odom:
-          frequency: 10
       custom_topics:
         velocity:
-          frequency: 50
+          frequency: 10
           vars: ["kalman.statePX", "kalman.statePY", "kalman.statePZ"]
 
   cf:
@@ -202,10 +200,10 @@ robot_types:
       enabled: true
       default_topics:
         pose:
-          frequency: 100
+          frequency: 10
       custom_topics:
         velocity:
-          frequency: 100
+          frequency: 10
           vars: ["kalman.statePX", "kalman.statePY", "kalman.statePZ"]
 
   cf_mocap_deck:
