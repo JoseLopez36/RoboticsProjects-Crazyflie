@@ -3,6 +3,9 @@ This ROS2 package contains adapted configuration files and launch files from [Cr
 
 Simulation part is run in physics simulator Gazebo Ignition and used ROS2 packages are based on [CrazySwarm2](https://imrclab.github.io/crazyswarm2/)
 
+## Reporting problems
+If you encounter an error or a problem during the installation, setup or usage, please check the [Issue tab](https://github.com/larics/mrs_crazyflies/issues). If there is no solution to your problem there (in closed an open issues), feel free to open a new issue. When reporting a problem, specify your operating system and method of installation, describe your problem, and include the entire output of the command that resulted in the error. This will be the quickest way to get feedback and will help other students who may encounter the same error in the future.
+
 ## Installation
 
 Again, there are two ways you can set up your computer to run the simulation:
@@ -10,12 +13,48 @@ Again, there are two ways you can set up your computer to run the simulation:
 2. If you **already have ROS2** installed and having hard time using docker on your laptop.
 
 ### 1) Docker installation (recommended!!!)
+If you haven't setup the docker in the first part of a project, please follow the instructions on [mrs_simulation](https://github.com/larics/mrs_simulation?tab=readme-ov-file#1-docker-installation-recommended) repo.
 
-Clone the [repository](https://github.com/larics/docker_files/tree/master/ros2/ros2-humble/crazyflies):
+Next, clone the [this repository](https://github.com/larics/mrs_crazyflies):
 ```
-git clone https://github.com/larics/docker_files.git
+git clone https://github.com/larics/mrs_crazyflies.git
 ```
-And follow the setup instructions  on [this link](https://github.com/larics/docker_files/tree/master/ros2/ros2-humble/crazyflies). This docker automatically clones and builds ROS2 mrs_crazyflies package.
+Add  to  `~/.bashrc` and source it, or type in the current terminal:
+```
+export DOCKER_BUILDKIT=1
+```
+Run Dockerfile from the project root directory using the following commands:
+```bash
+# Build the Dockerfile.
+# To install ros1_bridge and ROS Noetic set the argument INSTALL_BRIDGE to true.
+# Otherwise set it to false, and it will only install ROS2.
+docker build -t mrs_crazyflies_img .
+
+# Run the crazysim_img2 container for the fist time
+./first_run.sh
+
+# This will create docker container crazyswarm_container and position you into the container
+```
+
+For future runs, you can use the following commands:
+```bash
+# Start the container:
+docker start -i mrs_crazyflies_cont
+
+# Open the container in another terminal, while it is already started:
+docker exec -it mrs_crazyflies_cont bash
+
+# Stop the conatainer
+docker stop mrs_crazyflies_cont
+
+# Delete the container
+docker rm mrs_crazyflies_cont
+
+```
+The docker contains packages for crazyflies simulator [CrazySim](https://github.com/gtfactslab/CrazySim). General information about Crazyflies can be found [here](https://www.bitcraze.io/products/crazyflie-2-1/).
+
+> [!NOTE]
+> The ros2 workspace is located in /root/ros2_ws
 
 ### 2) Manual installation (if you already have ROS2 installed)
 > We are assuming that you have ROS2 Humble installed.
@@ -58,9 +97,9 @@ The environment variables `$SPAWN_POSE_DOC` and `$ENV_NAME`, alongside the `$NUM
 
 #### 2. In the second pane (up right), ROS2 crazyflies server, rviz and crazyflie nodes that publish cmd_vel, are started.
 ```
- waitForCfGazebo;sleep 5; ros2 launch mrs_crazyflies cf_velmux_launch.py
+ waitForCfsGazebo;sleep 2; ros2 launch mrs_crazyflies cf_velmux_launch.py
 ```
-The shell function `waitForCfGazebo` waits until crazyflies are spwaned in gazebo plus additional 5 seconds of sleep, just in case, to have enough time to start. It can be found in [to_copy](https://github.com/larics/docker_files/tree/ros-humble-cf/ros2/ros2-humble/crazyflies/to_copy) aliases (in docker it is copied to `/root/.bash_aliases`).
+The shell function `waitForCfsGazebo` waits until all crazyflies are spwaned in gazebo plus additional 5 seconds of sleep, just in case, to have enough time to start. It can be found in to_copy/ aliases (in docker it is copied to `/root/.bash_aliases`).
 
 Crazyflies server takes the data from `crazyflies_mrs.yaml`. For more info please read about: [CrazySim](https://github.com/gtfactslab/CrazySim) and [CrazySwarm2](https://imrclab.github.io/crazyswarm2/).
 
@@ -70,7 +109,7 @@ If you are waiting in this second pane, and it doesn't say that 'All Crazyflies 
 
 #### 3. The third pane (bottom left) starts the [map server](https://github.com/ros-navigation/navigation2/tree/main/nav2_map_server)
 ```
-waitForCfGazebo; ros2 launch mrs_crazyflies map_server_launch.py map_yaml:=/root/CrazySim/ros2_ws/src/mrs_crazyflies/maps/$ENV_NAME/$ENV_NAME.yaml
+waitForCfsGazebo; ros2 launch mrs_crazyflies map_server_launch.py map_yaml:=/root/CrazySim/ros2_ws/src/mrs_crazyflies/maps/$ENV_NAME/$ENV_NAME.yaml
 ```
 
 #### 4. The fourth pane (bottom right) is given as an example to test if crazyflie cf_1 is moving.
@@ -79,7 +118,7 @@ The command is stored in history, so you need to move in that pane, press up arr
 ```
 history -s "ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/cf_1/cmd_vel"
 ```
-After killing the session using ctrl+b, k, there might be some ros2 nodes running in the background, please do the command: kill_ros2, which will kill all ros2 processes running, it is defined in .bash_aliases. Keep this in mind when starting next session. :)
+After killing the session using ctrl+b, then press k, there might be some ros2 nodes running in the background, please do the command: kill_ros2, which will kill all ros2 processes running, it is defined in .bash_aliases. Keep this in mind when starting next session. :)
 ## Working on your project
 
 For developing your solution, you can either create a new package, or you can continue to work in this package. You can write your code in Python or C++.
