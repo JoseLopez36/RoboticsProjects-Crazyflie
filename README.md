@@ -1,5 +1,5 @@
-## MRS-Crazyflies
-This ROS2 package contains adapted configuration files and launch files from [CrazySim](https://github.com/gtfactslab/CrazySim), that should be used in the 2nd part of the MRS Project for the simulation part.
+## RoboticsProjects-Crazyflie
+This ROS2 package contains a fork from [MRS-Crazyflies](https://github.com/larics/mrs_crazyflies). The main goal is to simulate and deploy control, planning and coordination algorithms to Crazyflie UAVs.
 
 Simulation part is run in physics simulator Gazebo Ignition and used ROS2 packages are based on [CrazySwarm2](https://imrclab.github.io/crazyswarm2/)
 
@@ -15,9 +15,9 @@ Again, there are two ways you can set up your computer to run the simulation:
 ### 1) Docker installation (recommended!!!)
 If you haven't setup the docker in the first part of a project, please follow the instructions on [mrs_simulation](https://github.com/larics/mrs_simulation?tab=readme-ov-file#1-docker-installation-recommended) repo.
 
-Next, clone the [this repository](https://github.com/larics/mrs_crazyflies):
+Next, clone the [this repository](https://github.com/JoseLopez36/RoboticsProjects-Crazyflie):
 ```
-git clone https://github.com/larics/mrs_crazyflies.git
+git clone https://github.com/JoseLopez36/RoboticsProjects-Crazyflie
 ```
 Add  to  `~/.bashrc` and source it, or type in the current terminal:
 ```
@@ -118,11 +118,5 @@ The command is stored in history, so you need to move in that pane, press up arr
 ```
 history -s "ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/cf_1/cmd_vel"
 ```
-After killing the session using ctrl+b, then press k, there might be some ros2 nodes running in the background, please do the command: kill_ros2, which will kill all ros2 processes running, it is defined in .bash_aliases. Keep this in mind when starting next session. :)
-## Working on your project
-
-For developing your solution, you can either create a new package, or you can continue to work in this package. You can write your code in Python or C++.
-
-Feel free to add more windows or to create your own setups and sessions. :)
-
+After killing the session using ctrl+b, then press k, there might be some ros2 nodes running in the background, please do the command: kill_ros2, which will kill all ros2 processes running, it is defined in .bash_aliases.
 
