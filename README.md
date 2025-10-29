@@ -68,7 +68,7 @@ It will open one window with several panes.
 ```
 Bash script that starts gazebo requires several arguments -m is for the model. Please always use crazyflie. -f stands for the .txt file with the x and y iniitial positions for each crazyflie. The example for 4 crazyflies is given in the folder `launch/drone_spawn_list` (feel free to add yours here) and -w requires the world name which can be found in the worlds folder.
 
-The environment variables `$SPAWN_POSE_DOC` and `$ENV_NAME`, alongside the `$NUM_ROB`, which defines number of robots, are located in `mrs_example_setup.sh`. This file should be sourced, alongside ros2 workspaces before (alias: ros2_ws and source_ros2) - check out pre_window in `session.yml`. :)
+The environment variables `$SPAWN_POSE_DOC` and `$ENV_NAME`, alongside the `$NUM_ROB`, which defines number of robots, are located in `single_agent_setup.sh`. This file should be sourced, alongside ros2 workspaces before (alias: ros2_ws and source_ros2) - check out pre_window in `session.yml`. :)
 
 #### 2. In the second pane (up right), ROS2 crazyflies server, rviz and crazyflie nodes that publish cmd_vel, are started.
 ```
@@ -76,9 +76,9 @@ The environment variables `$SPAWN_POSE_DOC` and `$ENV_NAME`, alongside the `$NUM
 ```
 The shell function `waitForCfsGazebo` waits until all crazyflies are spwaned in gazebo plus additional 5 seconds of sleep, just in case, to have enough time to start. It can be found in to_copy/ aliases (in docker it is copied to `/root/.bash_aliases`).
 
-Crazyflies server takes the data from `crazyflies_mrs.yaml`. For more info please read about: [CrazySim](https://github.com/gtfactslab/CrazySim) and [CrazySwarm2](https://imrclab.github.io/crazyswarm2/).
+Crazyflies server takes the data from `single_agent_crazyflie_sim.yaml`. For more info please read about: [CrazySim](https://github.com/gtfactslab/CrazySim) and [CrazySwarm2](https://imrclab.github.io/crazyswarm2/).
 
-**Please keep in mind that the variable `$NUM_ROB` should correspond to the number of enabled crazyflies in the `crazyflies_mrs.yaml` and the number of rows in the `$SPAWN_POSE_DOC` also, otherwise the server won't be able to connect with gazebo. Also initial positions in `$SPAWN_POSE_DOC` should correspond to the ones in `crazyflies_mrs.yaml`.** Feel free to change them according to your task.
+**Please keep in mind that the variable `$NUM_ROB` should correspond to the number of enabled crazyflies in the `single_agent_crazyflie_sim.yaml` and the number of rows in the `$SPAWN_POSE_DOC` also, otherwise the server won't be able to connect with gazebo. Also initial positions in `$SPAWN_POSE_DOC` should correspond to the ones in `single_agent_crazyflie_sim.yaml`.** Feel free to change them according to your task.
 
 #### 3. The third pane (bottom left) starts the [map server](https://github.com/ros-navigation/navigation2/tree/main/nav2_map_server)
 ```

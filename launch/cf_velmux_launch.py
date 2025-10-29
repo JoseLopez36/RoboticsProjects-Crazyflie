@@ -12,7 +12,7 @@ def generate_launch_description():
     crazyflies_yaml = os.path.join(
         get_package_share_directory('roboticsprojects_crazyflie'),
         'config',
-        'crazyflies_mrs.yaml')
+        'single_agent_crazyflie_sim.yaml')
 
     with open(crazyflies_yaml, 'r') as ymlfile:
         crazyflies = yaml.safe_load(ymlfile)
@@ -60,8 +60,8 @@ def generate_launch_description():
             output='screen'
         ))
         
-        # Add vel_mux nodes dynamically based on the number parameter
-    for i in range(1, int(os.environ.get('NUM_ROBOTS', '4')) + 1):
+    # Add vel_mux nodes dynamically based on the number parameter
+    for i in range(1, int(os.environ.get('NUM_ROBOTS', '1')) + 1):
         namespace = f'cf_{i}'
         vel_mux_node = Node(
             package='crazyflie',
