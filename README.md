@@ -22,6 +22,7 @@ Run Dockerfile from the project root directory using the following commands:
 docker build -t roboticsprojects_crazyflie_img .
 
 # Run the crazysim_img2 container for the fist time
+export ROBOTICSPROJECTS_CRAZYFLIE_REPO_ROOT="/absolute/path/to/this/repo/root/on/host"  # REQUIRED
 ./first_run.sh
 
 # This will create docker container crazyswarm_container and position you into the container
@@ -46,6 +47,8 @@ The docker contains packages for crazyflies simulator [CrazySim](https://github.
 
 > [!NOTE]
 > The ros2 workspace is located in /root/ros2_ws
+> [!IMPORTANT]
+> To live-edit code from your host (e.g., in VSCode), set the environment variable `ROBOTICSPROJECTS_CRAZYFLIE_REPO_ROOT` to the absolute path of this repository's root on your host before running `./first_run.sh`. The repo will be mounted into the container at `/root/ros2_ws/src/roboticsprojects_crazyflie`.
 
 ## Test the simulation
 > [!NOTE]
