@@ -72,7 +72,7 @@ The environment variables `$SPAWN_POSE_DOC` and `$ENV_NAME`, alongside the `$NUM
 
 #### 2. In the second pane (up right), ROS2 crazyflies server, rviz and crazyflie nodes that publish cmd_vel, are started.
 ```
- waitForCfsGazebo;sleep 2; ros2 launch roboticsprojects_crazyflie cf_velmux_launch.py
+ waitForCfsGazebo;sleep 2; ros2 launch roboticsprojects_crazyflie single_agent_sim_launch.py
 ```
 The shell function `waitForCfsGazebo` waits until all crazyflies are spwaned in gazebo plus additional 5 seconds of sleep, just in case, to have enough time to start. It can be found in to_copy/ aliases (in docker it is copied to `/root/.bash_aliases`).
 

@@ -8,7 +8,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     
-    # load crazyflies
+    # Load crazyflie configuration
     crazyflies_yaml = os.path.join(
         get_package_share_directory('roboticsprojects_crazyflie'),
         'config',
@@ -21,7 +21,7 @@ def generate_launch_description():
     if "fileversion" in crazyflies:
         fileversion = crazyflies["fileversion"]
 
-    # server params
+    # Server parameters
     server_yaml = os.path.join(
         get_package_share_directory('crazyflie'),
         'config',
@@ -31,7 +31,7 @@ def generate_launch_description():
         server_yaml_content = yaml.safe_load(ymlfile)
 
     server_params = [crazyflies] + [server_yaml_content['/crazyflie_server']['ros__parameters']]
-    # robot description
+    # Robot description
     urdf = os.path.join(
         get_package_share_directory('crazyflie'),
         'urdf',
@@ -43,6 +43,8 @@ def generate_launch_description():
     server_params[1]['robot_description'] = robot_desc
     
     launch_description = []
+
+    # Start crazyflie server node
     launch_description.append(
         Node(
             package='crazyflie',
@@ -52,6 +54,7 @@ def generate_launch_description():
             parameters=server_params
         ))
     
+    # Start TransformWorld2Odom node
     launch_description.append(
         Node(
             package='roboticsprojects_crazyflie',
@@ -60,23 +63,22 @@ def generate_launch_description():
             output='screen'
         ))
         
-    # Add vel_mux nodes dynamically based on the number parameter
-    for i in range(1, int(os.environ.get('NUM_ROBOTS', '1')) + 1):
-        namespace = f'cf_{i}'
-        vel_mux_node = Node(
-            package='crazyflie',
-            executable='vel_mux.py',
-            name=f'vel_mux{i}',
-            output='screen',
-            namespace=namespace,
-            parameters=[
-                {"hover_height": 1.0},
-                {"incoming_twist_topic": "cmd_vel"},
-                {"robot_prefix": f"/{namespace}"}
-            ]
-        )
-        launch_description.append(vel_mux_node)
+    # Start vel_mux node
+    vel_mux_node = Node(
+        package='crazyflie',
+        executable='vel_mux.py',
+        name='vel_mux',
+        output='screen',
+        namespace='cf',
+        parameters=[
+            {"hover_height": 1.0},
+            {"incoming_twist_topic": "cmd_vel"},
+            {"robot_prefix": "/cf"}
+        ]
+    )
+    launch_description.append(vel_mux_node)
     
+    # Start Rviz2 node
     launch_description.append(       
         Node(
             package='rviz2',
