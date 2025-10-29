@@ -35,6 +35,7 @@ docker run -it \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --env="TERM=xterm-256color" \
+    --device=/dev/ttyUSB0 \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --volume="/dev:/dev" \
     --volume="/var/run/dbus/:/var/run/dbus/:z" \
@@ -42,5 +43,5 @@ docker run -it \
     --env SSH_AUTH_SOCK=/ssh-agent \
     --net=host \
     --privileged \
-    --name mrs_crazyflies_cont \
-    mrs_crazyflies_img
+    --name roboticsprojects_crazyflie_cont \
+    roboticsprojects_crazyflie_img

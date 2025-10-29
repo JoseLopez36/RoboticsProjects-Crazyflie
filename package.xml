@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>mrs_crazyflies</name>
+  <name>roboticsprojects_crazyflie</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="marijana.peti@fer.hr">root</maintainer>
-  <license>TODO: License declaration</license>
+  <description>ROS2 package to simulate and deploy algorithms on Crazyflie UAVs (single and multi-agent), adapted from MRS-Crazyflies.</description>
+  <maintainer email="josloprui6@alum.us.es">Robotics Projects Group 1 Team 1</maintainer>
+  <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>ament_cmake_python</buildtool_depend>

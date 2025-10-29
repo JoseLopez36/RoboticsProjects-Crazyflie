@@ -10,7 +10,7 @@ def generate_launch_description():
     
     # load crazyflies
     crazyflies_yaml = os.path.join(
-        get_package_share_directory('mrs_crazyflies'),
+        get_package_share_directory('roboticsprojects_crazyflie'),
         'config',
         'crazyflies_mrs.yaml')
 
@@ -54,7 +54,7 @@ def generate_launch_description():
     
     launch_description.append(
         Node(
-            package='mrs_crazyflies',
+            package='roboticsprojects_crazyflie',
             executable='TransformWorld2Odom.py',
             name='TransformWorld2Odom',
             output='screen'
@@ -83,7 +83,7 @@ def generate_launch_description():
             namespace='',
             executable='rviz2',
             name='rviz2',
-            arguments=['-d' + os.path.join(get_package_share_directory('mrs_crazyflies'), 'config', 'config.rviz')],
+            arguments=['-d' + os.path.join(get_package_share_directory('roboticsprojects_crazyflie'), 'config', 'config.rviz')],
             parameters=[{
                 "use_sim_time": True,
             }]

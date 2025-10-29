@@ -12,7 +12,7 @@ def generate_launch_description():
 
     ld = LaunchDescription()
 
-    map_yaml_arg = DeclareLaunchArgument('map_yaml', default_value='root/CrazySim/ros2_ws/src/mrs_crazyflies/maps/hard_maze_10x10/hard_maze_10x10.yaml')
+    map_yaml_arg = DeclareLaunchArgument('map_yaml', default_value='root/CrazySim/ros2_ws/src/roboticsprojects_crazyflie/maps/hard_maze_10x10/hard_maze_10x10.yaml')
     map_yaml = LaunchConfiguration('map_yaml')
     
     map_server_cmd = Node(
