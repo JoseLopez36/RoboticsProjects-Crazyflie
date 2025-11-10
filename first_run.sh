@@ -41,8 +41,10 @@ docker run -it \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --env="TERM=xterm-256color" \
+    --env="XAUTHORITY=$XAUTH" \
     --device=/dev/ttyUSB0 \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    --volume="$XAUTH:$XAUTH:rw" \
     --volume="/dev:/dev" \
     --volume="/var/run/dbus/:/var/run/dbus/:z" \
     --volume="$ROBOTICSPROJECTS_CRAZYFLIE_REPO_ROOT/roboticsprojects_crazyflie:/root/ros2_ws/src/roboticsprojects_crazyflie:rw" \
